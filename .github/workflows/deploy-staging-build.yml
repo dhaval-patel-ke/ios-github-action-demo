@@ -79,7 +79,7 @@ jobs:
   create-tag:
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    needs: [ firebase-distribution]
+    needs: [ deploy-ios ]
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
