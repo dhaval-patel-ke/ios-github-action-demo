@@ -31,7 +31,14 @@ jobs:
           PROVISION_PROFILE_BASE64: ${{ secrets.PROVISION_PROFILE_BASE64 }}
           KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
 
+      - name: Generate firebase credentials file
+        run: |
+          echo "${{ env.FIREBASE_CREDENTIALS }}" >> 'firebase_credentials.json'
+
       - name: Build Staging IPA
+        env:
+          FIREBASE_APP_ID: ${{ vars.FIREBASE_STAGING_IOS_APP_ID }}
+          FIREBASE_CREDENTIALS_FILE: 'firebase_credentials.json'
         run: |
           fastlane develop
 
@@ -53,21 +60,21 @@ jobs:
           
 
   # Required because of https://github.com/wzieba/Firebase-Distribution-Github-Action/issues/24
-  firebase-distribution:
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    needs: [ deploy-ios ]
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
-
-      - name: Upload IPA artifact to Firebase App Distribution
-        uses: ./.github/actions/firebase-distribution
-        with:
-          app-build-file-path: ${{ env.IPA_NAME }}
-          download-build: 'true'
-          firebase-app-id: ${{ vars.FIREBASE_STAGING_IOS_APP_ID }}
-          firebase-credentials: ${{ secrets.FIREBASE_CREDENTIALS }}
+#  firebase-distribution:
+#    runs-on: ubuntu-latest
+#    timeout-minutes: 30
+#    needs: [ deploy-ios ]
+#    steps:
+#      - name: Checkout Repo
+#        uses: actions/checkout@v4
+#
+#      - name: Upload IPA artifact to Firebase App Distribution
+#        uses: ./.github/actions/firebase-distribution
+#        with:
+#          app-build-file-path: ${{ env.IPA_NAME }}
+#          download-build: 'true'
+#          firebase-app-id: ${{ vars.FIREBASE_STAGING_IOS_APP_ID }}
+#          firebase-credentials: ${{ secrets.FIREBASE_CREDENTIALS }}
 
   create-tag:
     runs-on: ubuntu-latest
