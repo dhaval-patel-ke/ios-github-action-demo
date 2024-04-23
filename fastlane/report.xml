@@ -5,12 +5,17 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000193">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000202">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: build_app" time="20.599664">
+      <testcase classname="fastlane.lanes" name="1: build_app" time="16.751212">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: firebase_app_distribution" time="10.910124">
         
       </testcase>
     
