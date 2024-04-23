@@ -29,8 +29,8 @@ platform :ios do
       )
 
       firebase_app_distribution(
-          app: ENV[FIREBASE_APP_ID],
-          service_credentials_file: ENV[FIREBASE_CREDENTIALS_FILE],
+          app: ENV['FIREBASE_APP_ID'],
+          service_credentials_file: ENV['FIREBASE_CREDENTIALS_FILE'],
           groups: "kernelequity"
       )
 
