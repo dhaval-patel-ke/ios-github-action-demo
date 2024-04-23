@@ -33,7 +33,7 @@ jobs:
 
       - name: Generate firebase credentials file
         run: |
-          echo "${{ env.FIREBASE_CREDENTIALS }}" >> 'firebase_credentials.json'
+          echo "${{ env.FIREBASE_CREDENTIALS }}" >> firebase_credentials.json
 
       - name: Build Staging IPA
         env:
