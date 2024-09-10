@@ -28,6 +28,9 @@ def read_config_properties(flavor)
 end
 
 private_lane :build_adhoc_app do
+    puts @configuration['export_scheme']
+    puts @configuration['bundle_identifier']
+    puts @configuration['provisioning_profile_firebase']
     build_app(
         scheme: @configuration['export_scheme'],
         export_method: "ad-hoc",
