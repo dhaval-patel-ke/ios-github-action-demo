@@ -40,15 +40,12 @@ jobs:
           KEYCHAIN_PASSWORD: ${{ secrets.APPLE_SIGNING_KEYCHAIN_PASSWORD }}
 
       - name: 🚧 Save service account content to json file
-        working-directory: ./ios
         run: echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT_BASE64 }}" | base64 --decode > firebase_service_account.json
 
       - name: 🚧 Install Pods
-        working-directory: ./ios
         run: pod install
 
       - name: 🚀 Build & Deploy to Firebase
-        working-directory: ./ios
         run: bundle exec fastlane firebase_deploy
         env:
           config: ${{ env.FLAVOR }}
