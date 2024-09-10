@@ -15,7 +15,7 @@ concurrency:
 
 env:
   APP_NAME: "Clearly Legal - Dev"
-  FLAVOR: "dev"
+  FLAVOR: "staging"
 
 jobs:
   build-ios:
