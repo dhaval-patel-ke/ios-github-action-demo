@@ -42,9 +42,6 @@ jobs:
       - name: 🚧 Save service account content to json file
         run: echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT_BASE64 }}" | base64 --decode > firebase_service_account.json
 
-      - name: 🚧 Install Pods
-        run: pod install
-
       - name: 🚀 Build & Deploy to Firebase
         run: bundle exec fastlane firebase_deploy
         env:
