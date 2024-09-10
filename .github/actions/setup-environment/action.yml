@@ -37,19 +37,6 @@ runs:
         ruby-version: '3.3' # Not needed with a .ruby-version file
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
 
-    - name: Install Node.js 20
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20.x'
-
-    - name: Install dependencies
-      shell: bash
-      run: yarn
-
-    - name: Prepare Dot Environment
-      shell: bash
-      run:  npm run ${{ inputs.dot_env }}
-
     - name: Download Google Chat Client
       shell: bash
       if: ${{ inputs.gh_access_token != '' }}
