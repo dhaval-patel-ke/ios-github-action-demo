@@ -1,0 +1,59 @@
+name: Setup Environment
+description: 'composite run action for setup environment'
+
+inputs:
+  gh_access_token:
+    description: 'GitHub personal access token'
+    required: false
+    default: ''
+
+  google_chat_client_package_url:
+    description: 'A link to download google chat client jar package'
+    required: false
+    default: 'https://maven.pkg.github.com/dhaval-patel-ke/google-chat-client/com/kernelequity/google-chat-client/1.0.2/google-chat-client-1.0.2.jar'
+
+  dot_env:
+    description: 'Server environment. Option will be dev, staging, production'
+    required: true
+    default: 'production'
+
+  ruby_working_dir:
+    description: 'Ruby working directory'
+    required: false
+    default: ''
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install JDK 17
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'zulu'
+        java-version: '17'
+        cache: 'gradle'
+
+    - name: Install ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.3' # Not needed with a .ruby-version file
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+
+    - name: Install Node.js 20
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+
+    - name: Install dependencies
+      shell: bash
+      run: yarn
+
+    - name: Prepare Dot Environment
+      shell: bash
+      run:  npm run ${{ inputs.dot_env }}
+
+    - name: Download Google Chat Client
+      shell: bash
+      if: ${{ inputs.gh_access_token != '' }}
+      run: |
+        cd .github
+        curl -H "Authorization: token ${{ inputs.gh_access_token }}" -L -o google-chat-client.jar "${{ inputs.google_chat_client_package_url }}"

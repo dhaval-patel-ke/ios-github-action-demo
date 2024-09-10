@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7F4568D22BD7844400A2E8C3"
-               BuildableName = "ios-github-action-demo.app"
-               BlueprintName = "ios-github-action-demo"
+               BuildableName = "ClearlyLegal-DEV.app"
+               BlueprintName = "ClearlyLegal-DEV"
                ReferencedContainer = "container:ios-github-action-demo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -43,12 +43,21 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7F4568D22BD7844400A2E8C3"
-            BuildableName = "ios-github-action-demo.app"
-            BlueprintName = "ios-github-action-demo"
+            BlueprintIdentifier = "7FC56AC32C90C8A1009E5141"
+            BuildableName = "ClearlyLegal-STG.app"
+            BlueprintName = "ClearlyLegal-STG"
             ReferencedContainer = "container:ios-github-action-demo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "7F4568D22BD7844400A2E8C3"
+            BuildableName = "ClearlyLegal-DEV.app"
+            BlueprintName = "ClearlyLegal-DEV"
+            ReferencedContainer = "container:ios-github-action-demo.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -60,9 +69,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7F4568D22BD7844400A2E8C3"
-            BuildableName = "ios-github-action-demo.app"
-            BlueprintName = "ios-github-action-demo"
+            BlueprintIdentifier = "7FC56AC32C90C8A1009E5141"
+            BuildableName = "ClearlyLegal-STG.app"
+            BlueprintName = "ClearlyLegal-STG"
             ReferencedContainer = "container:ios-github-action-demo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

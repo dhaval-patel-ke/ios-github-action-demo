@@ -2,22 +2,22 @@ name: Github Release/Tag
 description: 'Create github release/tag'
 
 inputs:
-  app-name:
+  app_name:
     description: 'Application Name'
     required: false
     default: ''
 
-  create-tag:
+  create_tag:
     description: 'Create Tag'
     required: true
     default: 'true'
 
-  create-release:
+  create_release:
     description: 'Create Release'
     required: true
     default: 'false'
 
-  version-name:
+  version_name:
     description: 'Application version name'
     required: true
     default: '1.0'

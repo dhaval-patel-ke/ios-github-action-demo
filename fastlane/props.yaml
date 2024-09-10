@@ -1,0 +1,19 @@
+configurations:
+  dev:
+    bundle_identifier: app.dev.clearly.legal
+    export_scheme: ClearlyLegal-DEV
+    firebase_app_id: 1:287910307182:ios:56e3fb3302063eb1f58d7f
+    provisioning_profile_appstore: Clearly Legal [DEV] - TestFlight
+    provisioning_profile_firebase: Clearly Legal [DEV] - Firebase
+  staging:
+    bundle_identifier: app.staging.clearly.legal
+    export_scheme: ClearlyLegal-STG
+    firebase_app_id: 1:287910307182:ios:4e9e464c3a9e0ca0f58d7f
+    provisioning_profile_appstore: Clearly Legal [STG] - TestFlight
+    provisioning_profile_firebase: Clearly Legal [STG] - Firebase
+  production:
+    bundle_identifier: app.clearly.legal
+    export_scheme: ClearlyLegal-PRD
+    firebase_app_id: 1:287910307182:ios:0d68571292595519f58d7f
+    provisioning_profile_appstore: Clearly Legal - App Store
+    provisioning_profile_firebase: Clearly Legal - Firebase

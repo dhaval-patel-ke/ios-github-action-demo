@@ -2,38 +2,43 @@ name: Notify Release
 description: 'Notify on google chat'
 
 inputs:
-  app-name:
-    description: 'Application Name'
-    required: true
-    default: 'KernelApp'
-
-  app-build-link:
-    description: 'AppBuild download link'
-    required: true
-    default: ''
-
-  app-platform:
-    description: 'App platform. i.e. android, ios'
-    required: true
-
-  google-chat-webhook:
+  google_chat_webhook:
     description: 'Google chat webhook'
     required: true
 
-  version-name:
-    description: 'Application version name'
+  image:
+    description: 'Logo url '
     required: true
-    default: '1.0'
 
-  skip-tag:
-    description: 'Skip GitHub tag from release note'
-    required: false
-    default: 'false'
+  title:
+    description: 'Message title'
+    required: true
+    default: '{App Name}'
 
-  release-note-file:
-    description: 'Name of the release note'
+  subtitle:
+    description: 'Message subtitle'
+    required: true
+    default: '{Message Info}'
+
+  app_link:
+    description: 'App download link'
+    required: true
+    default: ''
+
+  tag_name:
+    description: 'Release/Tag name'
     required: false
-    default: 'release-note.txt'
+    default: ''
+
+  tag_link:
+    description: 'Release/Tag Link'
+    required: false
+    default: ''
+
+  release_note_file:
+    description: 'Release note file'
+    required: false
+    default: 'release_note.txt'
 
 runs:
   using: "composite"
@@ -48,48 +53,21 @@ runs:
             echo EOF
         } >> "$GITHUB_ENV"
 
-    - name: Generate message
+    - name: Notify on google chat
       shell: bash
-      env:
-        APP_NAME: ${{ inputs.app-name }}
-        APP_PLATFORM: ${{ inputs.app-platform }}
-        VERSION_NAME: ${{ inputs.version-name }}
-        APP_BUILD_LINK: ${{ inputs.app-build-link }}
-        RELEASE_NOTE_FILE: ${{ inputs.release-note-file }}
-        SKIP_TAG: ${{ inputs.skip-tag }}
       run: |
-        echo "*${{ env.APP_NAME }} 🚀🚀🚀*" >> ${{ env.RELEASE_NOTE_FILE }}
-        echo "*v${{ env.VERSION_NAME }}* for ${{ env.APP_PLATFORM }} is ready to test. *<${{ env.APP_BUILD_LINK }}|Click Here>* to download!\n" >> ${{ env.RELEASE_NOTE_FILE }}
-        if ${{ env.SKIP_TAG == false || env.SKIP_TAG == 'false' }}; then
-          echo "*GitHub Tag:*\n${{ github.server_url }}/${{ github.repository }}/releases/tag/v${{ env.VERSION_NAME }}\n" >> ${{ env.RELEASE_NOTE_FILE }}
+        if [ -z "${{ env.TAG_ACTION }}" ]; then
+          java -jar .github/google-chat-client.jar --url '${{ env.GOOGLE_CHAT_WEBHOOK }}' --title "${{ env.ACTION_TITLE }}" --subtitle "${{ env.ACTION_SUBTITLE }}" --imageUrl '${{ env.ACTION_LOGO }}' --desc "${{ env.ACTION_DESCRIPTION }}" --action '${{ env.DOWNLOAD_ACTION }}' --actionUrl '${{ env.DOWNLOAD_URL }}'
+        else 
+          java -jar .github/google-chat-client.jar --url '${{ env.GOOGLE_CHAT_WEBHOOK }}' --title "${{ env.ACTION_TITLE }}" --subtitle "${{ env.ACTION_SUBTITLE }}" --imageUrl '${{ env.ACTION_LOGO }}' --desc "${{ env.ACTION_DESCRIPTION }}" --action '${{ env.DOWNLOAD_ACTION }}' --actionUrl '${{ env.DOWNLOAD_URL }}' --action '${{ env.TAG_ACTION }}' --actionUrl '${{ env.TAG_URL }}'
         fi
-        echo "*Release Note:*\n${{ env.RELEASE_NOTE }}" >> ${{ env.RELEASE_NOTE_FILE }}
-
-    - name: Upload release note
-      uses: actions/upload-artifact@v4
       env:
-        RELEASE_NOTE_FILE: ${{ inputs.release-note-file }}
-      with:
-        name: ${{ env.RELEASE_NOTE_FILE }}
-        path: ${{ env.RELEASE_NOTE_FILE }}
-
-    - name: Read file content
-      id: read-content
-      uses: actions/github-script@v7
-      env:
-        RELEASE_NOTE_FILE: ${{ inputs.release-note-file }}
-      with:
-        result-encoding: string
-        script: |
-          const fs = require('fs');
-          const filePath = '${{ env.RELEASE_NOTE_FILE }}';
-          const fileContent = fs.readFileSync(filePath, 'utf8');
-          const content = fileContent.replace("'", "");
-          return content;
-
-    - name: Notify release on google chat
-      shell: bash
-      env:
-        GOOGLE_CHAT_WEBHOOK: ${{ inputs.google-chat-webhook }}
-      run: |
-        curl --location '${{ env.GOOGLE_CHAT_WEBHOOK }}' --header 'Content-Type: application/json' --data '{ "text": "${{ steps.read-content.outputs.result }}" }'
+        GOOGLE_CHAT_WEBHOOK: ${{ inputs.google_chat_webhook }}
+        ACTION_LOGO: ${{ inputs.image }}
+        ACTION_TITLE: ${{ inputs.title }}
+        ACTION_SUBTITLE: ${{ inputs.subtitle }}
+        ACTION_DESCRIPTION: "<b>Release Note:</b><br>${{ env.RELEASE_NOTE }}"
+        DOWNLOAD_ACTION: "Download"
+        DOWNLOAD_URL: ${{ inputs.app_link }}
+        TAG_ACTION: ${{ inputs.tag_name }}
+        TAG_URL: ${{ inputs.tag_link }}

@@ -4,15 +4,23 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Demo[PRD].xcscheme_^#shared#^_</key>
+		<key>ClearlyLegal-DEV.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>Demo[STG].xcscheme_^#shared#^_</key>
+		<key>ClearlyLegal-STG.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>7FC56AC32C90C8A1009E5141</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

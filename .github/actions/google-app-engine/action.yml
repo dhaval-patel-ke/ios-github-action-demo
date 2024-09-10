@@ -1,0 +1,44 @@
+name: Deploy to google app engine
+description: 'Authenticate & Deploy to Google App Engine'
+
+inputs:
+  project_id:
+    description: 'App Engine project Id'
+    required: true
+
+  credentials_json:
+    description: 'Service Account json to authenticate'
+    required: true
+
+  deliverables:
+    description: 'Configure app settings'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: 🤖 Build for Web
+      shell: bash
+      run: npx expo export --platform web
+
+    - name: 🚧 Authenticate with App Engine credentials
+      id: 'auth'
+      uses: 'google-github-actions/auth@v2'
+      with:
+        project_id: ${{ inputs.project_id }}
+        credentials_json: ${{ inputs.credentials_json }}
+
+    - name: 🤖 Deploy to App Engine
+      id: 'deploy'
+      uses: 'google-github-actions/deploy-appengine@v2'
+      with:
+        deliverables: ${{ inputs.deliverables }}
+        flags: --no-cache
+        project_id: ${{ inputs.project_id }}
+
+    - name: Set up Cloud SDK
+      uses: 'google-github-actions/setup-gcloud@v2'
+
+    - name: Deploy dispatch.yaml
+      shell: bash
+      run: 'gcloud app deploy dispatch.yaml'

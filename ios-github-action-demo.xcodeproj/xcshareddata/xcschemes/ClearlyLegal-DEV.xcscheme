@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7F4568D22BD7844400A2E8C3"
-               BuildableName = "ios-github-action-demo.app"
-               BlueprintName = "ios-github-action-demo"
+               BuildableName = "ClearlyLegal-DEV.app"
+               BlueprintName = "ClearlyLegal-DEV"
                ReferencedContainer = "container:ios-github-action-demo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,8 +44,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7F4568D22BD7844400A2E8C3"
-            BuildableName = "ios-github-action-demo.app"
-            BlueprintName = "ios-github-action-demo"
+            BuildableName = "ClearlyLegal-DEV.app"
+            BlueprintName = "ClearlyLegal-DEV"
             ReferencedContainer = "container:ios-github-action-demo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -61,8 +61,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7F4568D22BD7844400A2E8C3"
-            BuildableName = "ios-github-action-demo.app"
-            BlueprintName = "ios-github-action-demo"
+            BuildableName = "ClearlyLegal-DEV.app"
+            BlueprintName = "ClearlyLegal-DEV"
             ReferencedContainer = "container:ios-github-action-demo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -1,38 +1,25 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
-#
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
-# For a list of all available plugins, check out
-#
-#     https://docs.fastlane.tools/plugins/available-plugins
-#
-
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
-
 default_platform(:ios)
 
+import("ios.rb")
+
+before_all do |lane, options|
+    skip_docs
+	read_ios_params(options)
+end
+
 platform :ios do
-  desc "Deploy develop build"
-  lane :develop do
-      build_app(
-        scheme: "Demo[STG]",
-        export_method: "ad-hoc",
-        export_options: {
-          provisioningProfiles: {
-            "com.kernelequity.topacts" => "TopActs[STG] - Firebase",
-          }
-        }
-      )
 
-      firebase_app_distribution(
-          app: ENV['FIREBASE_APP_ID'],
-          service_credentials_file: ENV['FIREBASE_CREDENTIALS_FILE'],
-          groups: "kernelequity"
-      )
-
+  desc "Build & deploy to Firebase"
+  lane :firebase_deploy do
+     build_adhoc_app
+     firebase_app_deploy
   end
+
+  desc "Build & deploy to PlayStore"
+  lane :appstore_deploy do
+     build_appstore_app
+     # TODO: Yet to work on it
+     # appstore_app_deploy
+  end
+
 end

@@ -11,18 +11,30 @@
 		7F4568D92BD7844400A2E8C3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4568D82BD7844400A2E8C3 /* ContentView.swift */; };
 		7F4568DB2BD7844500A2E8C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F4568DA2BD7844500A2E8C3 /* Assets.xcassets */; };
 		7F4568DE2BD7844500A2E8C3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F4568DD2BD7844500A2E8C3 /* Preview Assets.xcassets */; };
+		7FC56AC52C90C8A1009E5141 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4568D82BD7844400A2E8C3 /* ContentView.swift */; };
+		7FC56AC62C90C8A1009E5141 /* ios_github_action_demoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4568D62BD7844400A2E8C3 /* ios_github_action_demoApp.swift */; };
+		7FC56AC92C90C8A1009E5141 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F4568DD2BD7844500A2E8C3 /* Preview Assets.xcassets */; };
+		7FC56ACA2C90C8A1009E5141 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F4568DA2BD7844500A2E8C3 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7F4568D32BD7844400A2E8C3 /* ios-github-action-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-github-action-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F4568D32BD7844400A2E8C3 /* ClearlyLegal-DEV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ClearlyLegal-DEV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F4568D62BD7844400A2E8C3 /* ios_github_action_demoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_github_action_demoApp.swift; sourceTree = "<group>"; };
 		7F4568D82BD7844400A2E8C3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7F4568DA2BD7844500A2E8C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F4568DD2BD7844500A2E8C3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7FC56ACE2C90C8A1009E5141 /* ClearlyLegal-STG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ClearlyLegal-STG.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		7F4568D02BD7844400A2E8C3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7FC56AC72C90C8A1009E5141 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -43,7 +55,8 @@
 		7F4568D42BD7844400A2E8C3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7F4568D32BD7844400A2E8C3 /* ios-github-action-demo.app */,
+				7F4568D32BD7844400A2E8C3 /* ClearlyLegal-DEV.app */,
+				7FC56ACE2C90C8A1009E5141 /* ClearlyLegal-STG.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,9 +83,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7F4568D22BD7844400A2E8C3 /* ios-github-action-demo */ = {
+		7F4568D22BD7844400A2E8C3 /* ClearlyLegal-DEV */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7F4568E12BD7844500A2E8C3 /* Build configuration list for PBXNativeTarget "ios-github-action-demo" */;
+			buildConfigurationList = 7F4568E12BD7844500A2E8C3 /* Build configuration list for PBXNativeTarget "ClearlyLegal-DEV" */;
 			buildPhases = (
 				7F4568CF2BD7844400A2E8C3 /* Sources */,
 				7F4568D02BD7844400A2E8C3 /* Frameworks */,
@@ -82,9 +95,26 @@
 			);
 			dependencies = (
 			);
-			name = "ios-github-action-demo";
+			name = "ClearlyLegal-DEV";
 			productName = "ios-github-action-demo";
-			productReference = 7F4568D32BD7844400A2E8C3 /* ios-github-action-demo.app */;
+			productReference = 7F4568D32BD7844400A2E8C3 /* ClearlyLegal-DEV.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7FC56AC32C90C8A1009E5141 /* ClearlyLegal-STG */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7FC56ACB2C90C8A1009E5141 /* Build configuration list for PBXNativeTarget "ClearlyLegal-STG" */;
+			buildPhases = (
+				7FC56AC42C90C8A1009E5141 /* Sources */,
+				7FC56AC72C90C8A1009E5141 /* Frameworks */,
+				7FC56AC82C90C8A1009E5141 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ClearlyLegal-STG";
+			productName = "ios-github-action-demo";
+			productReference = 7FC56ACE2C90C8A1009E5141 /* ClearlyLegal-STG.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -115,7 +145,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7F4568D22BD7844400A2E8C3 /* ios-github-action-demo */,
+				7F4568D22BD7844400A2E8C3 /* ClearlyLegal-DEV */,
+				7FC56AC32C90C8A1009E5141 /* ClearlyLegal-STG */,
 			);
 		};
 /* End PBXProject section */
@@ -130,6 +161,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7FC56AC82C90C8A1009E5141 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7FC56AC92C90C8A1009E5141 /* Preview Assets.xcassets in Resources */,
+				7FC56ACA2C90C8A1009E5141 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -139,6 +179,15 @@
 			files = (
 				7F4568D92BD7844400A2E8C3 /* ContentView.swift in Sources */,
 				7F4568D72BD7844400A2E8C3 /* ios_github_action_demoApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7FC56AC42C90C8A1009E5141 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7FC56AC52C90C8A1009E5141 /* ContentView.swift in Sources */,
+				7FC56AC62C90C8A1009E5141 /* ios_github_action_demoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,7 +323,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ios-github-action-demo/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 9J9L9X2G5K;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 5M2VQ93DP4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -287,10 +336,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kernelequity.topacts;
+				PRODUCT_BUNDLE_IDENTIFIER = app.dev.clearly.legal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "TopActs[STG] - Firebase";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Clearly Legal [DEV] - Firebase";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -307,7 +356,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ios-github-action-demo/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 9J9L9X2G5K;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 5M2VQ93DP4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -320,10 +369,76 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kernelequity.topacts;
+				PRODUCT_BUNDLE_IDENTIFIER = app.dev.clearly.legal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "TopActs[STG] - Firebase";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Clearly Legal [DEV] - Firebase";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		7FC56ACC2C90C8A1009E5141 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ios-github-action-demo/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 5M2VQ93DP4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.staging.clearly.legal;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Clearly Legal [STG] - Firebase";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7FC56ACD2C90C8A1009E5141 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ios-github-action-demo/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 5M2VQ93DP4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.staging.clearly.legal;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Clearly Legal [STG] - Firebase";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -342,11 +457,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7F4568E12BD7844500A2E8C3 /* Build configuration list for PBXNativeTarget "ios-github-action-demo" */ = {
+		7F4568E12BD7844500A2E8C3 /* Build configuration list for PBXNativeTarget "ClearlyLegal-DEV" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7F4568E22BD7844500A2E8C3 /* Debug */,
 				7F4568E32BD7844500A2E8C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7FC56ACB2C90C8A1009E5141 /* Build configuration list for PBXNativeTarget "ClearlyLegal-STG" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7FC56ACC2C90C8A1009E5141 /* Debug */,
+				7FC56ACD2C90C8A1009E5141 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

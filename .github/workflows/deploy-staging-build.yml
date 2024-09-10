@@ -1,4 +1,4 @@
-name: Deploy Staging Build
+name: Firebase deploy develop ios app
 
 on:
   push:
@@ -7,97 +7,48 @@ on:
 permissions:
   actions: write
   contents: write
+  id-token: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 env:
-  IPA_NAME: "Demo-Staging.ipa"
-  APP_NAME: "Demo App - Staging"
-  FIREBASE_DISTRIBUTION_LINK: "https://appdistribution.firebase.google.com/testerapps"
+  APP_NAME: "Clearly Legal - Dev"
+  FLAVOR: "dev"
 
 jobs:
-  deploy-ios:
+  build-ios:
     runs-on: macos-latest
-    timeout-minutes: 30
-    outputs:
-      version-name: ${{ steps.ios-version.outputs.VERSION_NAME }}
+    timeout-minutes: 45
     steps:
-      - name: Checkout Repo
+      - name: 📚 Checkout Repo
         uses: actions/checkout@v4
+
+      - name: 📦 Setup Environment
+        uses: ./.github/actions/setup-environment
+        with:
+          dot_env: ${{ env.FLAVOR }}
+          gh_access_token: ${{ secrets.GH_ACCESS_TOKEN }}
 
       - name: Setup Apple Signing
         uses: ./.github/actions/apple-signing
         with:
-          CERTIFICATE_BASE64: ${{ secrets.CERTIFICATE_BASE64 }}
-          CERTIFICATE_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
-          PROVISION_PROFILE_BASE64: ${{ secrets.PROVISION_PROFILE_BASE64 }}
-          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+          CERTIFICATE_BASE64: ${{ secrets.APPLE_SIGNING_CERTIFICATE_BASE64 }}
+          CERTIFICATE_PASSWORD: ${{ secrets.APPLE_SIGNING_CERTIFICATE_PASSWORD }}
+          PROVISION_PROFILE_BASE64: ${{ secrets.APPLE_SIGNING_PROVISION_PROFILE_BASE64 }}
+          KEYCHAIN_PASSWORD: ${{ secrets.APPLE_SIGNING_KEYCHAIN_PASSWORD }}
 
-      - name: Generate firebase credentials file
-        run: |
-          echo "${{ env.FIREBASE_CREDENTIALS }}" >> firebase_credentials.json
+      - name: 🚧 Save service account content to json file
+        working-directory: ./ios
+        run: echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT_BASE64 }}" | base64 --decode > firebase_service_account.json
 
-      - name: Build Staging IPA
+      - name: 🚧 Install Pods
+        working-directory: ./ios
+        run: pod install
+
+      - name: 🚀 Build & Deploy to Firebase
+        working-directory: ./ios
+        run: bundle exec fastlane firebase_deploy
         env:
-          FIREBASE_APP_ID: ${{ vars.FIREBASE_STAGING_IOS_APP_ID }}
-          FIREBASE_CREDENTIALS_FILE: 'firebase_credentials.json'
-        run: |
-          fastlane develop
-
-      - name: Rename IPA File
-        run: mv *.ipa ${{ env.IPA_NAME }}
-
-      - name: Upload iOS Release
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ env.IPA_NAME }}
-          path: ${{ env.IPA_NAME }}
-          compression-level: 0 # no compression
-
-      - name: Retrieve version name
-        id: ios-version
-        shell: bash
-        run: |
-          echo "VERSION_NAME=$(xcodebuild -target ios-github-action-demo -showBuildSettings  | grep -i 'MARKETING_VERSION' | sed 's/[ ]*MARKETING_VERSION = //')" >> $GITHUB_OUTPUT
-          
-
-  # Required because of https://github.com/wzieba/Firebase-Distribution-Github-Action/issues/24
-#  firebase-distribution:
-#    runs-on: ubuntu-latest
-#    timeout-minutes: 30
-#    needs: [ deploy-ios ]
-#    steps:
-#      - name: Checkout Repo
-#        uses: actions/checkout@v4
-#
-#      - name: Upload IPA artifact to Firebase App Distribution
-#        uses: ./.github/actions/firebase-distribution
-#        with:
-#          app-build-file-path: ${{ env.IPA_NAME }}
-#          download-build: 'true'
-#          firebase-app-id: ${{ vars.FIREBASE_STAGING_IOS_APP_ID }}
-#          firebase-credentials: ${{ secrets.FIREBASE_CREDENTIALS }}
-
-  create-tag:
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    needs: [ deploy-ios ]
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
-
-      - name: Create GitHub Release
-        uses: ./.github/actions/github-release
-        with:
-          app-name: 'Demo'
-          create-tag: 'true'
-          create-release: 'false'
-          version-name: ${{ needs.deploy-android.outputs.version-name }}
-
-      - name: Notify release on google chat
-        uses: ./.github/actions/notify-google-chat
-        with:
-          app-name: ${{ env.APP_NAME }}
-          app-platform: 'iOS'
-          app-build-link: '${{ env.FIREBASE_DISTRIBUTION_LINK }}/${{ vars.FIREBASE_STAGING_IOS_APP_ID }}'
-          google-chat-webhook: ${{ secrets.GOOGLE_CHAT_WEBHOOK }}
-          version-name: ${{ needs.deploy-ios.outputs.version-name }}
-          skip-tag: true
+          config: ${{ env.FLAVOR }}
